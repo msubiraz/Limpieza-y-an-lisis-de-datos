@@ -12,6 +12,34 @@ print(train.head())
 train.describe()
 
 
+# Creamos un array vacio para almacenar las edades que vamos a completar basados en pclass x gender
+
+guess_ages = np.zeros((2,3))
+
+# Ahora iteramos en la columna genero y clase para calcular las edades que falta
+
+for dataset in combine:  
+    for i in range(0, 2):
+        for j in range(0, 3):
+            guess_df = dataset[(dataset['Sex'] == i) & \
+                                  (dataset['Pclass'] == j+1)]['Age'].dropna()
+
+            age_mean = guess_df.mean()
+            age_std = guess_df.std()
+            age_guess = rnd.uniform(age_mean - age_std, age_mean + age_std)
+
+            #age_guess = guess_df.median()
+
+            # Convert random age float to nearest .5 age
+            guess_ages[i,j] = int( age_guess/0.5 + 0.5 ) * 0.5
+            
+    for i in range(0, 2):
+        for j in range(0, 3):
+            dataset.loc[ (dataset.Age.isnull()) & (dataset.Sex == i) & (dataset.Pclass == j+1),\
+                    'Age'] = guess_ages[i,j]
+
+    dataset['Age'] = dataset['Age'].astype(int)
+
 #4. Análisis de los datos. 
 #4.1. Selección de los grupos de datos que se quieren analizar/comparar (planificación de los análisis a aplicar).
 
