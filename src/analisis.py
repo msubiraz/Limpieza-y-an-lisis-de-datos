@@ -58,12 +58,6 @@ for dataset in combine:
     #Puerto de embarque
     #Niños vs adultos
 
-
-# Eliminamos ticket# y cabin# de nuestro dataset. 
-train = train.drop(['Ticket','Cabin'], axis=1)
-test = test.drop(['Ticket','Cabin'], axis=1)
-combine = [train, test]
-
 # La variable campo la renombramos a título 
 title_mapping = {"Mr": 1, "Miss": 2, "Mrs": 3, "Master": 4, "Rare": 5}
 for dataset in combine:
@@ -82,8 +76,6 @@ for dataset in combine:
 #Eliminamos passangerId y Name de train, y name de test
 train = train.drop(['Name','PassengerId'], axis=1)
 test = test.drop(['Name'], axis=1)
-combine = [train, test]
-
 
 import seaborn as sns
 from scipy.stats import norm
