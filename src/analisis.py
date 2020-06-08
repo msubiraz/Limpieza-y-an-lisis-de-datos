@@ -265,3 +265,21 @@ sns.barplot('Pclass', 'Survived', data=train)
 plt.show()
 
 
+# Comparamos la relación entre Pclass y Fare segun si han sobrevivido
+fig = plt.figure(figsize = (10,5))
+sns.swarmplot(x="Pclass", y="Fare", data=train, hue='Survived')
+plt.show()
+
+# Veamos ahora una distribución de los supervivientes por edad
+fig = plt.figure(figsize = (10,5))
+plt.hist(x = [train[train['Survived']==1]['Age'], train[train['Survived']==0]['Age']], 
+         stacked=True, color = ['g','r'],label = ['Survived','Dead'])
+plt.title('Age Histogram by Survival')
+plt.xlabel('Age (Years)')
+plt.ylabel('# of Passengers')
+plt.legend()
+plt.show()
+
+
+
+
