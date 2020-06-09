@@ -12,7 +12,7 @@ La actividad ha sido realizada de manera conjunta por **Hugo Martin** y **Marc S
 
 ## Ficheros del código fuente
 
-* **analysis.py**: Código fuente del análisis.
+* **src/analysis.py**: Código fuente del análisis.
 
 ## Recursos
 
